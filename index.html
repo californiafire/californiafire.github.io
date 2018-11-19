@@ -1,0 +1,375 @@
+<html>
+	<head>
+		<title>California Fire</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+
+			a{color: white;}
+			a:visited {color: white;}
+
+			.fixed
+			{
+				position: fixed;
+				color: white;
+				text-align: center;
+				border: 1px solid rgba(1, 1, 1, 0.1);
+			}
+
+			.dot 
+			{
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+
+				width: 1em;
+				height: 1em;
+				border-radius: 100%;
+				background-color: white;
+			}
+
+			.topBar
+			{
+				position: fixed;
+				width: 100%;
+				left: 0px;
+				top: 0px;
+				background-color: rgba(0, 0, 0, 0.4);
+
+				color: white;
+				font-size: 20px;
+				text-align: center;
+			}
+
+			.upperLeft
+			{
+				position: fixed;
+				left: 10px;
+				top: 0px;
+				color: white;
+				color: rgba(255, 255, 255, 0.6);
+			}
+
+			.bottomBar
+			{
+				padding-left: 20px;
+				position: fixed;
+				width: 100%;
+				left: 0px;
+				bottom: 0px;
+				background-color: rgba(0, 0, 0, 0.4);
+
+				color: white;
+				color: rgba(255, 255, 255, 0.6);
+				font-size: 15px;
+				text-align: left;
+			}
+
+			.aboutContainer 
+			{
+
+				position: fixed;
+				right: 10px;
+				bottom: 10px;
+			}
+
+			.about 
+			{
+
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+
+
+				width: 45px;
+				height: 45px;
+
+				border-radius: 100%;
+				background-color: rgba(0, 0, 0, 0.6);
+				border: 2px solid rgba(255, 255, 255, 0.3);
+				color:  white;
+				text-align: center;
+				font-size: 30px;
+				cursor: pointer;
+			}
+
+			.about:hover
+			{
+				background-color: rgba(0, 0, 0, 1);
+				border: 2px solid white;
+
+			}
+
+			.aboutInner
+			{
+				margin-top: 3px;
+
+			}
+
+
+
+			.donate 
+			{
+				position: fixed;
+				right: 10px;
+				top: 5px;
+				width: 180px;
+				height: 55px;
+
+
+				border-radius: 10px;
+				/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b2e1ff+0,66b6fc+100&0.09+0,0.34+100;Blue+3D+%236 */
+				background: -moz-linear-gradient(top, rgba(178,225,255,0.09) 0%, rgba(102,182,252,0.34) 100%); /* FF3.6-15 */
+				background: -webkit-linear-gradient(top, rgba(178,225,255,0.09) 0%,rgba(102,182,252,0.34) 100%); /* Chrome10-25,Safari5.1-6 */
+				background: linear-gradient(to bottom, rgba(178,225,255,0.09) 0%,rgba(102,182,252,0.34) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#17b2e1ff', endColorstr='#5766b6fc',GradientType=0 ); /* IE6-9 */
+
+				border: 2px solid rgba(255, 255, 255, 0.4);
+				color:  white;
+				text-align: center;
+				font-size: 19px;
+				cursor: pointer;
+			}
+
+			.donate:hover
+			{
+				border: 2px solid white;
+			}
+
+			.donateInner
+			{
+				margin-top: 5px;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<div class="topBar">
+			<br/>
+			Paradise, CA - The Camp Fire.
+			<br/><br/>
+		</div>
+
+		<div class="bottomBar">
+			<br/>
+				76 Dead, 1,276 Missing, 9,800 homes lost
+				<br/><br/>
+				This is an artistic rendering and not meant to be geographically accurate.  I created this because I wanted to convey the scale of the fire better than a flat map could.
+			<br/>
+			<br/>
+		</div>
+
+
+		<div class="upperLeft">
+			<br/>Use arrow keys to<br/>move the camera
+		</div>
+
+
+		<a href="about.html" target="_blank">
+			<div class="aboutContainer">
+				How I made this:
+				<div class="about">
+					<div class="aboutInner">
+						i
+					</div>
+				</div>
+			</div>
+		</a>
+		<a href="https://disasterphilanthropy.networkforgood.com/projects/62496-cdp-california-wildfires-recovery-fund" target="_blank">
+			<div class="donate">
+				<div class="donateInner">
+					Donate to relief<br/>efforts
+				</div>
+			</div>
+		</a>
+
+		<script type="x-shader/x-vertex" id="vert">
+
+
+			varying vec2 vUv;
+			varying vec3 vPos;
+			uniform float globalTime;
+
+			uniform sampler2D dispTex;
+
+			void main() {
+
+	            vUv = uv;
+
+				vec3 pos = position;
+
+
+				vPos = pos;
+
+				vec4 col = texture2D(dispTex, vec2(uv.s, uv.t));
+				pos.z += (col.x + col.y + col.z) * 8.0 - 7.0;
+
+
+
+				vec4 mvPosition = modelViewMatrix * vec4( pos, 1.0 );
+
+				gl_Position = projectionMatrix * mvPosition;
+			}
+
+		</script>
+
+		<script type="x-shader/x-fragment" id="frag">
+				
+			varying vec2 vUv;
+			varying vec3 vPos;
+
+			uniform sampler2D texture;
+			uniform sampler2D texture2;
+			uniform sampler2D dispTex;
+			uniform vec2 deadZone;
+			uniform float globalTime;
+			uniform float globalDark;
+
+			void main() {
+				
+				vec4 hTex = texture2D(dispTex, vec2(vUv.s, vUv.t));
+
+				vec4 hTex2 = texture2D(dispTex, vec2(vUv.s + 0.001, vUv.t + 0.001));
+				float h = hTex.x + hTex.y + hTex.z;
+
+				float h2 = hTex2.x + hTex2.y + hTex2.z;
+
+				if (h < 0.6)
+					discard;
+
+				float dist = sqrt((vPos.x - deadZone.x) * (vPos.x - deadZone.x) + (vPos.y - deadZone.y) * (vPos.y - deadZone.y));
+
+				vec4 hCol = vec4(h * 0.9, h* 0.7, h*0.5, 1.0);
+				if (h > 1.2)
+					hCol = vec4(h * 0.3, h * 0.6, h * 0.6, 1.0); 
+				if (h > 1.4)
+					hCol = vec4(h * 0.3, h * 0.7, h * 0.5, 1.0); 
+				if (h > 1.5)
+					hCol = vec4(h * 0.3, h * 0.8, h * 0.4, 1.0); 
+				if (h > 1.6)
+					hCol = vec4(h * 0.5, h * 0.6, h * 0.4, 1.0); 
+				if (h > 1.7)
+					hCol = vec4(h * 0.6); 
+
+				vec4 tex2 = texture2D(texture2, vec2(vUv.s * 100.0, vUv.t * 100.0));
+				vec4 tex1 = texture2D(texture, vec2(vUv.s + (tex2.x * 0.00125 - 0.0005), vUv.t + (tex2.x * 0.00125 - 0.0005)));
+
+				float deadMult = 1.0;
+				vec4 fireColor = vec4(0.0);
+				if (dist < 7.0)
+				{
+					deadMult *= dist * 0.14;
+					fireColor = vec4(2.0, 1, 0.5, 1.0) * (1.0 - deadMult) * (1.0 - deadMult) * (1.0 - deadMult) * 1.25 * (1.0 + 0.05 * cos(deadMult * 20.0 - globalTime * 2.0));
+				}
+
+				deadMult *= globalDark;
+				// deadMult -= smoke.w * 0.2;
+
+				gl_FragColor = ((1.0 + 0.2 * cos(h * 20.0 + vPos.x * 0.1 + vPos.y * 0.1 + tex2.x * 3.0))
+				 * (tex1 * (vec4(0.2) + texture2D(texture2, vec2(vUv.s * 400.0, vUv.t * 400.0)) * 0.75)  * (vec4(0.85) + texture2D(texture2, vec2(vUv.s * 50.0, vUv.t * 8.0)) * 0.2))
+				  * 1.0 + hCol * 0.3) * deadMult * deadMult + fireColor;
+				gl_FragColor.a = 1.0;
+			}
+
+		</script>
+
+
+			<script type="x-shader/x-vertex" id="firevert">
+
+
+				varying vec2 vUv;
+				varying vec3 vPos;
+				uniform float globalTime;
+
+				void main() {
+
+		            vUv = uv;
+
+					vec3 pos = position;
+
+
+					vPos = pos;
+
+					pos.x += (pos.z * 0.00001 * cos(globalTime * 0.01));
+
+					vec4 mvPosition = modelViewMatrix * vec4( pos, 1.0 );
+
+					gl_Position = projectionMatrix * mvPosition;
+				}
+
+			</script>
+
+			<script type="x-shader/x-fragment" id="firefrag">
+					
+				varying vec2 vUv;
+				varying vec3 vPos;
+
+				uniform float globalTime;
+				uniform sampler2D texture;
+
+				void main() {
+
+
+					vec4 col = texture2D(texture, vec2(vUv.s * 0.1, vUv.t * 0.1));
+					float r = 3.0 + cos(vPos.x * 2.0 + vPos.y * 1.0 - globalTime * 4.0 + col.x * 4.0 + vUv.s) * (1.0 - vUv.t) * 0.6;
+					float g = 1.0 + cos(vPos.x * 4.0 + vPos.y * 1.0 - globalTime * 4.0 + col.x * 20.0 + vUv.s * 2.0) * (1.0 - vUv.t) * 0.6;
+					float b = 0.5 + cos(vPos.x * 6.0 + vPos.y * 1.0 - globalTime * 4.0 + col.x * 10.0) * (1.0 - vUv.t) * 0.6;
+					float a = 1.2 + cos(vPos.x * 1.0 + vPos.y * 1.0 - globalTime * 4.0 + col.x * 10.0) * 0.6;
+
+					gl_FragColor = vec4(r * (1.0 - vUv.t), g * (1.0 - vUv.t), b * (1.0 - vUv.t), a * (1.0 - vUv.t) * (1.0 - vUv.t));
+				}
+
+			</script>
+
+
+				<script type="x-shader/x-vertex" id="smokevert">
+
+
+					varying vec2 vUv;
+					varying vec3 vPos;
+					uniform float globalTime;
+
+					void main() {
+
+			            vUv = uv;
+
+						vec3 pos = position;
+
+
+						vPos = pos;
+
+						vec4 mvPosition = modelViewMatrix * vec4( pos, 1.0 );
+
+						gl_Position = projectionMatrix * mvPosition;
+					}
+
+				</script>
+
+				<script type="x-shader/x-fragment" id="smokefrag">
+						
+					varying vec2 vUv;
+					varying vec3 vPos;
+
+					uniform sampler2D texture;
+					uniform float globalTime;
+					uniform float alpha;
+
+					void main() {
+
+
+						vec4 col = texture2D(texture, vec2(vUv.s, vUv.t));
+						col.xyz *= 0.4 + cos(globalTime * 3.0 + col.w * 20.0) * 0.05;
+
+						gl_FragColor = alpha * col * (1.0 + cos(globalTime * 1.0 + col.w * 10.0 + vUv.s * vUv.t * 1.0) * 0.051  + cos(globalTime * 0.3 + col.w * 20.0) * 0.01);
+					}
+
+				</script>
+
+		<script src="lib/three.js"></script>
+		<script src="lib/Lensflare.js"></script>
+		<script src="lib/GLTFLoader.js"></script>
+		<script src="lib/GPUParticleSystem.js"></script>
+		<script src="src/fire1.js"></script>
+	</body>
+</html>

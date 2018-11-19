@@ -1,0 +1,983 @@
+
+.player {
+
+    position: fixed;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+
+    animation: example 34s infinite;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+    from {top: 280%;}
+    to {top: -10%;}
+}
+
+/* Standard syntax */
+@keyframes example {
+    from {top: 280%;}
+    to {top: -10%;}
+}
+
+.circleIcon {
+  border-radius: 50%;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  bottom: -10px;
+  margin-right: 10px;
+}
+
+.rectIcon2 {
+  border-radius: 10%;
+  position: relative;
+  bottom: -10px;
+  margin-right: 10px;
+}
+
+.rectIcon {
+  border-radius: 10%;
+  border: 1px solid black;
+  position: relative;
+  bottom: -10px;
+  margin-right: 10px;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotateY(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotateY(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotateY(360deg); transform: rotateY(360deg); } }
+
+.bullet {
+
+  left: 10px;
+  position: relative;
+  background-color: white;
+  width: 2px;
+  height: 10px;
+
+  animation-delay: 3s;
+  animation: bulletAnim 3s infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes bulletAnim {
+    0% {bottom: 15px;}
+    60% {bottom: 15px;}
+    100% {bottom: 200px;}
+}
+
+/* Standard syntax */
+@keyframes bulletAnim {
+    0% {bottom: 15px;}
+    60% {bottom: 15px;}
+    100% {bottom: 200px;}
+}
+
+
+.triLine1 {
+  position: fixed;
+  left: 33px;
+  top: 50px;
+  background-color: white;
+  width: 46px;
+  height: 1px;
+  transform: rotate(57deg);
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    background: rgba(255, 255, 255, 0.1); 
+    border: 0px solid white;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1); 
+    border: 0px solid white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #777; 
+}
+
+.linkArrow {
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.linkArrow:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.linkArrow2 {
+  padding-right: 1.5em;
+}
+
+.projectTable {
+  width: 100%;
+}
+
+.outlineBox {
+  padding: 10px;
+  margin: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid lightgray;
+  text-align: center;
+}
+
+.linkArrow span {
+  color: black;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  font-size: 0em;
+}
+
+.blueArrow span {
+  color: black;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  font-size: 0em;
+}
+
+.linkArrow2 span {
+  color: black;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  font-size: 0em;
+}
+
+.blueArrow:hover span {
+  color: rgb(0, 100, 255);
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  font-size: 1em;
+}
+
+.linkArrow:hover span {
+  color: white;
+  font-size: 1em;
+}
+
+.linkArrow2:hover span {
+  color: white;
+  font-size: 1em;
+}
+
+.projectTableCell {
+  text-align: center;
+  border: 1px solid lightgray;
+  background-color: lightgray;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding-top: 70px;
+
+  padding-bottom: 100px;
+
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.projectTableCell:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.projectTableCell a img {
+
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  border: 1px solid black;
+  border-radius: 25px;
+}
+
+.projectTableCell a:hover img {
+  border: 1px solid white;
+}
+
+a:link {
+    color: rgb(220, 220, 220);
+    text-decoration: none;
+    -webkit-transition: color 0.3s; /* Safari */
+    transition: color 0.3s;
+}
+a:visited {
+    color: rgb(220, 220, 220);
+    -webkit-transition: color 0.3s; /* Safari */
+    transition: color 0.3s;
+}
+a:hover {
+    color: white;
+}
+a:active {
+    color: rgb(220, 220, 220);
+    -webkit-transition: color 0.3s; /* Safari */
+    transition: color 0.3s;
+}
+
+.mainLink:link {
+    color: rgb(0, 0, 200);
+
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+}
+.mainLink:visited {
+    color: rgb(0, 0, 200);
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+}
+.mainLink:hover {
+    color: rgb(0, 100, 255);
+}
+.mainLink:active {
+    color: rgb(0, 0, 200);
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+}
+
+.blackLink {
+
+    text-align: center;
+}
+
+.blackLink:link {
+    color: rgb(20, 20, 20);
+}
+.blackLink:visited {
+    color: rgb(20, 20, 20);
+}
+.blackLink:hover {
+    color: rgb(60, 60, 60);
+}
+.blackLink:active {
+    color: rgb(20, 20, 20);
+}
+
+body {
+	font-family: Arial, Times, serif;
+	color: rgb(25, 25, 25);
+
+  margin: 0;
+
+   min-width:500px;        /* Suppose you want minimum width of 1000px */
+   width: auto !important;  /* Firefox will set width as auto */
+}
+
+canvas {
+    position: absolute;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+}
+
+.ripple {
+  position: absolute;
+  background-color: white;
+  z-index: 3000;
+
+  border-radius: 50%;
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.6);
+  border: 40px solid white;
+
+  transform: scale(0);
+
+  animation: rippleDrop 1.4s linear;
+}
+
+@keyframes rippleDrop {
+  100% {
+    transform: scale(0.35);
+    opacity: 0;
+  }
+}
+
+#homeBackContainer {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Standard syntax */
+  background-color: #f2f2f2;
+  width: 100%;
+  height: 100%;
+}
+
+.homeTable {
+
+    border-collapse: collapse;
+    border: 1px solid transparent;
+    position: absolute; top: 0; bottom: 0; left: 0; right: 0;
+
+}
+
+.smallerText {
+  font-size: 0.9em;
+}
+
+.blackBackground {
+
+    overflow-y: auto;
+    color: rgb(220, 220, 220);
+    background-color: black;
+
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 225px;
+    text-align: center;
+    background-image: url("BikeBackground.jpg");
+    background-size: cover;
+}
+
+.blackBackground:hover {
+
+}
+
+.benPicture {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+}
+
+.benPicture2 {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+}
+
+.heartPicture {
+
+    border-radius: 100px;
+
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255,0.75);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255,0.75);
+    box-shadow: 0px 0px 15px 0px rgba(255, 255, 255,0.75);
+}
+
+.rightContainerHome {
+    position: fixed;
+    left: 225px;
+    top: 0px;
+    width: 100%;
+}
+
+.rightContainer {
+    z-index: -1;
+	position: fixed;
+    left: 225px;
+    top: 0px;
+}
+
+.homeBlur {
+
+}
+
+.homePic {
+}
+
+.homePicCover {
+    position: absolute;
+    top: -4px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.homePicCover2 {
+    position: absolute;
+    top: -4px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.fixedHeight {
+
+  height: 174px;
+}
+
+.homePicBanner {
+    position: absolute;
+    top: -4px;
+    left: 0px;
+	width: 100%;
+	height: 180px;
+	background-color: rgba(255, 255, 255, 0.4);
+}
+
+.homePicBannerBottom {
+    position: absolute;
+    top: 174px;
+    left: 0px;
+	width: 100%;
+	height: 2px;
+	background-color: rgba(0,0,0, 0.6);
+}
+
+.top-left {
+	font-size: 3.25em;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+	font-weight: bold;
+}
+
+.vPadding {
+    padding-top: 9px;
+}
+
+.hPadding {
+    padding-left: 50px;
+}
+
+.mainSubText {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.mainSubTextTable {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+
+.leftMenuBar {
+	text-align: left;
+}
+
+.allHeart {
+    position: absolute;
+    left: 900px;
+    top: 50px;
+    white-space: nowrap;
+}
+
+.socialIcon {
+    padding: 9px;
+    background-color: transparent;
+
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+    border-radius: 0%;
+}
+
+.socialIcon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    font-size: 1.2em;
+    border-radius: 25%;
+}
+
+.whiteSpace {
+	width: 100%;
+	height: 100%;
+}
+
+.socialIcons {
+    text-align: center;
+}
+
+.fixedLeftContent {
+
+    position: absolute;
+    right: 0;
+    left: 225px;
+    top: 0px;
+}
+
+.whiteCell {
+
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-color: #f2f2f2;
+
+    background-image: url("WebBikes2.jpg");
+    background-size: cover;
+}
+
+.pureWhiteCell {
+
+  padding: 25px;
+  background-color: white;
+}
+
+.blackCell {
+
+  padding: 50px;
+  color: white;
+  background-color: black;
+}
+
+.pswCell {
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-image: url("psw.jpg");
+    background-size: cover;
+    background-color: white;
+}
+
+.glCell {
+
+  padding: 50px;
+  border: 1px solid lightgray;
+  background-image: url("GoldenFieldWhite.png");
+  background-size: cover;
+  background-color: white;
+}
+
+.barCell {
+    padding: 50px;
+    background-image: url("barback.jpg");
+    background-size: cover;
+    background-color: white;
+}
+
+.resumeCell {
+
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-image: url("resume.jpg");
+    background-size: cover;
+    background-color: white;
+    font-size: 0.9em;
+}
+
+.noBreak {
+    white-space: nowrap;
+}
+
+.botCell {
+
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-image: url("robotback.jpg");
+    background-size: cover;
+    background-color: white;
+}
+
+.blurCell {
+
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-image: url("WebBlur.jpg");
+    background-size: cover;
+    background-color: white;
+}
+
+.blurCell2 {
+
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-image: url("WebBlur2.jpg");
+    background-size: cover;
+    background-color: white;
+}
+
+.levelCell {
+
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-image: url("levelback.jpg");
+    background-size: cover;
+    background-color: white;
+}
+
+
+.sunCell {
+
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-image: url("sunback.jpg");
+    background-size: cover;
+    background-color: white;
+}
+
+.sanityCell {
+
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-image: url("sanity.jpg");
+    background-size: cover;
+    background-color: white;
+}
+
+
+.arena1 {
+
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-image: url("arena1.jpg");
+    background-size: cover;
+    background-color: white;
+}
+
+.arena2 {
+
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-image: url("arena2.jpg");
+    background-size: cover;
+    background-color: white;
+}
+
+.arena4 {
+
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-image: url("arena3.jpg");
+    background-size: cover;
+    background-color: white;
+}
+
+.arena5 {
+
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-image: url("arena3.jpg");
+    background-size: cover;
+    background-color: white;
+}
+
+.arena3 {
+
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-image: url("arena3.jpg");
+    background-size: cover;
+    background-color: white;
+}
+
+.contactCell {
+
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-image: url("contact.jpg");
+    background-size: cover;
+    background-color: white;
+}
+
+.arenaBanner {
+    width: 100%;
+    height: 300px;
+    background-image: url("titlescren.png");
+    background-size: cover;
+    background-color: white;
+}
+
+.noCell {
+    padding: 50px;
+}
+
+.volunteerCell {
+
+    padding: 50px;
+    border: 1px solid lightgray;
+    background-image: url("heartback.jpg");
+    background-size: cover;
+    background-color: white;
+}
+
+.resumeType {
+    display: inline-block;
+    text-align: center;
+    padding-right: 100px;
+}
+
+.codeType {
+    display: inline-block;
+    text-align: center;
+    padding-left: 50px;
+}
+
+.codeType2 {
+    display: inline-block;
+    text-align: center;
+}
+
+.blackBorder {
+  border: 1px solid gray;
+  border-radius: 5px;  
+}
+
+.shadow {
+
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    border-radius: 20px;
+}
+
+.miniArtPic {
+
+  background: transparent url("loading.jpg") no-repeat scroll center center;
+  position: relative;
+  top: 10px;
+}
+
+.artPic {
+
+  background: transparent url("loading.jpg") no-repeat scroll center center;
+  min-height: 250px;
+  min-width: 500px;
+
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  margin-top: -3px;
+  margin-bottom: -3px;
+
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+
+}
+
+.artPic:hover {
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+}
+
+.shadowHover {
+
+    border-radius: 3px;
+
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    border: 1px solid lightgray;
+}
+
+.shadowHover:hover {
+
+  border: 1px solid black;
+}
+
+.middleLoadingText {
+
+    z-index: 10;
+    font-size: 1.2em;
+    color: white;
+    position: fixed;
+    padding: 4px;
+    border-radius: 2px;
+    left: 50%;
+    top: 70%;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+}
+
+.mobileAdd {
+    z-index: 10;
+    font-size: 0.6em;
+    background-color: rgba(128, 128, 128, 0.5);
+    position: fixed;
+    padding: 4px;
+    border-radius: 2px;
+    right: 0;
+    bottom: 0;
+}
+
+.blackContent {
+    background-image: url("floor.jpg");
+    background-size: cover;
+    background-color: black;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 4em;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.1s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 0s;
+  animation-name: fade;
+  animation-duration: 0s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+.volunteerLink {
+  border: 1px solid transparent;
+
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.volunteerLink:hover {
+
+  background-color: white;
+  border: 1px solid black;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+.popup {
+    position: relative;
+    left: -50px;
+    top: -3em;
+
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.popuptext {
+    width: 200px;
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 20px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+    border: 1px solid #555;
+
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255,0.2);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255,0.2);
+    box-shadow: 0px 0px 15px 0px rgba(255, 255, 255,0.2);
+}
+
+.popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.popupLink:hover {
+  
+
+}
