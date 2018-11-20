@@ -216,6 +216,7 @@ function loadKML() {
     if (this.readyState == 4 && this.status == 200) {
     	var xmlDoc = new DOMParser().parseFromString(this.responseText,'text/xml');
 
+    	console.log(xmlDoc);
     	var x = xmlDoc.documentElement.childNodes;
     	for (i = 0; i < x.length ;i++) {
     		if (x[i].nodeName == "Document")
@@ -406,7 +407,11 @@ function animate() {
 
 	var rot = camRot;
 
-	camera.position.set( camX + dist * Math.cos(rot), camHeight, camZ + dist * Math.sin(rot));
+	var mult = 1;
+
+	if (window.innerHeight >  window.innerWidth)
+		mult = 0.5 + (window.innerHeight / window.innerWidth * 0.5);
+	camera.position.set( camX + dist * Math.cos(rot) * mult, camHeight * mult, camZ + dist * Math.sin(rot) * mult);
 	camPoint.position.set(camX, 2, camZ);
 
 	for (var i = 0; i < cities.length; i++)
@@ -423,13 +428,13 @@ function animate() {
 		var left = viewport.x + ( positionScreen.x * halfViewportWidth ) + halfViewportWidth - div.offsetWidth / 2;
 		var bottom = viewport.y + ( positionScreen.y * halfViewportHeight ) + halfViewportHeight - div.offsetHeight / 2;
 
-		if (left < 0 || left > window.innerWidth - 100 || bottom < 100 || bottom > window.innerHeight)
-			div.style.display = "none";
-		else
+		//if (left < 0 || left > window.innerWidth - 100 || bottom < 100 || bottom > window.innerHeight)
+		//	div.style.display = "none";
+		//else
 		{
 			div.style.left = left;
 			div.style.bottom = bottom;
-			div.style.display = "block";
+			//div.style.display = "block";
 		}
 		
 	}

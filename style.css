@@ -522,13 +522,9 @@ canvas {
 }
 
 .whiteCell {
-
     padding: 50px;
     border: 1px solid lightgray;
     background-color: #f2f2f2;
-
-    background-image: url("WebBikes2.jpg");
-    background-size: cover;
 }
 
 .pureWhiteCell {
