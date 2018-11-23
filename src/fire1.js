@@ -186,7 +186,7 @@ function parsePolyParent(node, fireCount)
 function parseFireNode(node)
 {
 	var nodeName = node.getElementsByTagName("name")[0].textContent.toLowerCase();
-	if (nodeName.includes("perimeter"))
+	// if (nodeName.includes("perimeter"))
 	{
 		var fireCount = -1;
 		for (var i  = 0; i < fires.length; i++)
@@ -213,18 +213,26 @@ loadKML();
 function loadKML() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-    	var xmlDoc = new DOMParser().parseFromString(this.responseText,'text/xml');
+  	if (this.readyState == 4)
+  	{
+	    if (this.status == 200) {
+	    	var xmlDoc = new DOMParser().parseFromString(this.responseText,'text/xml');
 
-    	console.log(xmlDoc);
-    	var x = xmlDoc.documentElement.childNodes;
-    	for (i = 0; i < x.length ;i++) {
-    		if (x[i].nodeName == "Document")
-    		{
-    			parseDoc(x[i]);
-    		}
-    	}
-    }
+	    	console.log(xmlDoc);
+	    	var x = xmlDoc.documentElement.childNodes;
+	    	for (i = 0; i < x.length ;i++) {
+	    		if (x[i].nodeName == "Document")
+	    		{
+	    			parseDoc(x[i]);
+	    		}
+	    	}
+	    }
+	    else
+	    {
+	    	console.log("Load Fail");
+	    	loadKML();
+	    }
+	}
   };
   xhttp.open("GET", "tex/doc.kml", true);
   xhttp.send();
