@@ -1,3 +1,14 @@
+var mouseDown = 0;
+var mouseX = [0, 0, 0, 0];
+var mouseY = [0, 0, 0, 0];
+var mouseXDown = [0, 0, 0, 0];
+var mouseYDown = [0, 0, 0, 0];
+var wheelXEvent = 0;
+var wheelYEvent = 0;
+var wheelXEventPrev = 0;
+var wheelYEventPrev = 0;
+var wheelX = 0;
+var wheelY = 0;
 
 var lastTime = new Date().getTime();
 var currentlyPressedKeys = { };
@@ -8,6 +19,70 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.setClearColor( new THREE.Color(0.1, 0.1, 0.1), 1 );
 document.body.appendChild( renderer.domElement );
+
+mouseElement = renderer.domElement;
+
+function doTouch(event) {
+	mouseDown = event.touches.length;
+	for (var i = 0; i < mouseDown && i < mouseX.length; i++)
+	{
+		mouseX[i] = event.touches[i].clientX;
+		mouseY[i] = event.touches[i].clientY;
+	}
+
+    event.preventDefault();
+}
+
+mouseElement.onmousedown = function(event) { 
+	if (document.activeElement == document.body)
+	{
+		if (mouseDown < 4)
+		{
+			mouseX[mouseDown] = event.clientX;
+			mouseY[mouseDown] = event.clientY;
+
+			mouseXDown[mouseDown] = event.clientX;
+			mouseYDown[mouseDown] = event.clientY;
+		}
+		mouseDown++;
+	}
+}
+
+mouseElement.onmousemove = function(event) { 
+	mouseX[mouseDown - 1] = event.clientX;
+	mouseY[mouseDown - 1] = event.clientY;
+}
+
+mouseElement.onmouseup = function(event) {
+  mouseDown = 0;
+}
+
+mouseElement.ontouchstart = function(event) {
+	mouseDown = event.touches.length;
+	for (var i = 0; i < mouseDown && i < mouseX.length; i++)
+	{
+		mouseX[i] = event.touches[i].clientX;
+		mouseY[i] = event.touches[i].clientY;
+
+		if (i == mouseDown - 1)
+		{
+			mouseXDown[i] = event.touches[i].clientX;
+			mouseYDown[i] = event.touches[i].clientY;
+		}
+	}
+    event.preventDefault();
+}
+
+mouseElement.onwheel = function(event)
+{
+	wheelXEvent += event.deltaX;
+	wheelYEvent += event.deltaY;
+    event.preventDefault();
+}
+
+mouseElement.ontouchmove = doTouch;
+mouseElement.ontouchend = doTouch;
+mouseElement.ontouchcancel = doTouch;
 
 var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 4500 );
 camera.position.set( 200, 200, 200 );
@@ -386,6 +461,19 @@ function moveCamBy(rot)
 
 function animate() {
 
+	wheelX = wheelXEvent - wheelXEventPrev;
+	wheelXEventPrev = wheelXEvent;
+	wheelY = wheelYEvent - wheelYEventPrev;
+	wheelYEventPrev = wheelYEvent;
+
+	var mouseDx = mouseXDown[0] - mouseX[0];
+	mouseXDown[0] = mouseX[0];
+	var mouseDy = mouseYDown[0] - mouseY[0];
+	mouseYDown[0] = mouseY[0];
+
+	mouseDx += wheelX * 0.25;
+	mouseDy += wheelY * 0.25;
+
 	var timeNow = new Date().getTime();
 	var deltaTime = timeNow - lastTime;
 	if (deltaTime > 60)
@@ -445,29 +533,6 @@ function animate() {
 			//div.style.display = "block";
 		}
 		
-	}
-
-	if (false)
-	{
-	if (currentlyPressedKeys[87])
-	{
-		moveCamBy(rot);
-	}
-
-	if (currentlyPressedKeys[83])
-	{
-		moveCamBy(rot + Math.PI);
-	}
-
-	if (currentlyPressedKeys[68])
-	{
-		moveCamBy(rot + Math.PI / 2);
-	}
-
-	if (currentlyPressedKeys[65])
-	{
-		moveCamBy(rot - Math.PI / 2);
-	}
 	}
 
 	camera.lookAt( camX, 4, camZ );	
@@ -533,24 +598,27 @@ function animate() {
 	}
 
 
-	if (currentlyPressedKeys[38])
+	targetCamHeight += mouseDy * 0.25;
+	if (currentlyPressedKeys[38] || currentlyPressedKeys[87])
 	{
 		targetCamHeight += 0.2 * deltaTime;
-		if (targetCamHeight > 400)
-			targetCamHeight = 400;
 	}
-	if (currentlyPressedKeys[40])
+	if (targetCamHeight > 400)
+		targetCamHeight = 400;
+
+	if (currentlyPressedKeys[40] || currentlyPressedKeys[83])
 	{
 		targetCamHeight -= 0.2 * deltaTime;
-		if (targetCamHeight < 10)
-			targetCamHeight = 10;
 	}
+	if (targetCamHeight < 10)
+		targetCamHeight = 10;
 
-	if (currentlyPressedKeys[39])
+	targetCamRot += mouseDx * 0.002;
+	if (currentlyPressedKeys[39] || currentlyPressedKeys[68])
 	{
 		targetCamRot -= 0.003 * deltaTime;
 	}
-	if (currentlyPressedKeys[37])
+	if (currentlyPressedKeys[37] || currentlyPressedKeys[65])
 	{
 		targetCamRot += 0.003 * deltaTime;
 	}
