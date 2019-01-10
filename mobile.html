@@ -1,6 +1,7 @@
 <html>
 	<head>
 
+
 		<title>California Fire</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<style>
@@ -106,21 +107,33 @@
 
 		</style>
 	</head>
-	<body>
+	<body onresize="checkWidth()">
 
 		<div class="topBar">
 			Paradise, CA - The Camp Fire.
 			<br/>
 		</div>
 
-		<div class="bottomBar">
+		<div class="bottomBar" id="bottomBar">
 			<div class="bottomBarInner">
 				<br/>
 					76 Dead, 1,276 Missing, 9,800 homes lost
 					<br/><br/>
 					This is an artistic rendering and not meant to be geographically accurate.  I created this because I wanted to convey the scale of the fire better than a flat map could.<br/><br/>
 
-					<a href="about.html" target="_blank">
+					<a href="about.html" target="_blank" id="made">
+						How I made this
+					</a>
+				<br/>
+				<br/>
+			</div>
+		</div>
+
+		<div class="bottomBar" id="made">
+			<div class="bottomBarInner">
+				<br/>
+
+					<a href="about.html" target="_blank" id="made">
 						How I made this
 					</a>
 				<br/>
@@ -324,5 +337,29 @@
 		<script src="lib/GLTFLoader.js"></script>
 		<script src="lib/GPUParticleSystem.js"></script>
 		<script src="src/fire1.js"></script>
+
+		<script type="text/javascript">
+			var checkWidth = function()
+			{
+				var vis = window.innerWidth > window.innerHeight;
+				{
+					var bottomBar = document.getElementById("bottomBar"); 
+					bottomBar.style.display = vis ? "none" : "block";
+					var made = document.getElementById("made"); 
+					made.style.display = !vis ? "none" : "block";
+				}	
+				
+
+				var fov = 28 * (1 + window.innerHeight / window.innerWidth);
+				if (fov < 45)
+					fov = 45;
+
+				camera.fov = fov;
+			    camera.aspect = window.innerWidth / window.innerHeight;
+			    camera.updateProjectionMatrix();
+			    renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+			checkWidth();
+		</script>
 	</body>
 </html>

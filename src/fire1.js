@@ -84,10 +84,31 @@ mouseElement.ontouchmove = doTouch;
 mouseElement.ontouchend = doTouch;
 mouseElement.ontouchcancel = doTouch;
 
-var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 4500 );
+
+var fov = 28 * (1 + window.innerHeight / window.innerWidth);
+if (fov < 45)
+	fov = 45;
+
+var camera = new THREE.PerspectiveCamera( fov, window.innerWidth / window.innerHeight, 1, 45000 );
 camera.position.set( 200, 200, 200 );
-camera.lookAt( 0, 100, 0 );
+camera.lookAt( 0, 0, 0 );
 camera.far = 100000;
+
+window.addEventListener( 'resize', onWindowResize, false );
+
+function onWindowResize(){
+	console.log(camera);
+
+	var fov = 28 * (1 + window.innerHeight / window.innerWidth);
+	if (fov < 45)
+		fov = 45;
+
+	camera.fov = fov;
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+}
+
 
 var fires = [];
 var selectedFire = 0;
